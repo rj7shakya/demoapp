@@ -1,23 +1,29 @@
-import TextField from "@mui/material/TextField";
-import { useState } from "react";
-import { Alert } from "../utils";
+import { Alert, Input } from "../utils";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export const Login = (props: any) => {
-  const [name, setname] = useState("");
-  const [password, setPassword] = useState("");
+  const schema = yup
+    .object({
+      name: yup.string().required("Name is required"),
+      password: yup.string().required("Password is required"),
+    })
+    .required();
 
-  const onSubmit = () => {
-    console.log(name, password);
-    if (name === "") {
-      Alert("Name is required", "error");
-    } else if (password === "") {
-      Alert("Password is required", "error");
-    } else if (name === "rj" && password === "rj") {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (values: any) => {
+    if (values?.name === "rj" && values?.password === "rj") {
       localStorage.setItem("loggedin", "login");
       props?.history?.push("/home");
       Alert("Login Successful", "success");
-    } else {
-      Alert("Invalid Credentials", "error");
     }
   };
 
@@ -25,27 +31,22 @@ export const Login = (props: any) => {
     <div className="container">
       <div className="login__container">
         <div className="login text">Login</div>
-
-        <TextField
-          id="outlined-basic"
-          label="name"
-          variant="outlined"
-          style={{ marginBottom: "2rem" }}
+        <Input
+          name="Name"
+          required
           type={"text"}
-          value={name}
-          onChange={(e: any) => setname(e?.target?.value)}
+          register={register("name")}
+          error={errors.name?.message}
         />
-        <TextField
-          id="outlined-basic"
-          label="Password"
-          variant="outlined"
+        <Input
+          name="Password"
+          required
           type={"password"}
-          style={{ marginBottom: "2rem" }}
-          value={password}
-          onChange={(e: any) => setPassword(e?.target?.value)}
+          register={register("password")}
+          error={errors.password?.message}
         />
 
-        <div className="button" onClick={onSubmit}>
+        <div className="button" onClick={handleSubmit(onSubmit)}>
           Login
         </div>
       </div>

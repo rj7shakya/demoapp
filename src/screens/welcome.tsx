@@ -1,3 +1,5 @@
+import { Alert } from "../utils";
+
 export const Welcome = (props: any) => {
   return (
     <div className="container">
@@ -9,6 +11,7 @@ export const Welcome = (props: any) => {
           onClick={() => {
             localStorage.removeItem("loggedin");
             props?.history?.push("/login");
+            Alert("Logout Successful", "success");
           }}
         >
           Logout

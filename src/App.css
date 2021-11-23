@@ -32,3 +32,17 @@
   cursor: pointer;
   color: #dee4e7;
 }
+
+.error {
+  color: red;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.star {
+  color: red;
+}
+
+.input {
+  margin-bottom: 2rem;
+}
