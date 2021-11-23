@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #efefef;
+  background-color: #dee4e7;
 }
 
 .login__container {
@@ -12,9 +12,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #dee4e7;
+  background-color: #efefef;
   padding: 2rem 3rem;
   border-radius: 0.5rem;
+  box-shadow: 9px 11px 6px -5px rgba(0, 0, 0, 0.3);
 }
 
 .login {
@@ -44,5 +45,11 @@
 }
 
 .input {
+  margin-bottom: 2rem;
+}
+
+.image {
+  width: 8rem;
+  height: 8rem;
   margin-bottom: 2rem;
 }
