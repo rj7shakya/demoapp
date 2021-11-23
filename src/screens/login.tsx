@@ -30,6 +30,8 @@ export const Login = (props: any) => {
       localStorage.setItem("loggedin", "login");
       props?.history?.push("/home");
       Alert("Login Successful", "success");
+    } else {
+      Alert("Invalid Credentials", "error");
     }
   };
 
